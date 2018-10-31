@@ -76,7 +76,7 @@ class BaseController extends CI_Controller {
 	 * This function is used to load the set of views
 	 */
 	function loadThis() {
-		$this->global ['pageTitle'] = 'AutoTradeMachine : Access Denied';
+		$this->global ['pageTitle'] = 'TraderSupport : Access Denied';
 		
 		$this->load->view ( 'includes/header', $this->global );
 		$this->load->view ( 'access' );

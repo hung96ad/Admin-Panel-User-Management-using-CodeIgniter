@@ -2,9 +2,9 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>AutoTradeMachine</b> Admin System | Version 1.5
+          <b>TraderSupport</b> Admin System | Version 1.5
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="<?php echo base_url(); ?>">AutoTradeMachine</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2014-2015 <a href="<?php echo base_url(); ?>">TraderSupport</a>.</strong> All rights reserved.
     </footer>
     
     <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

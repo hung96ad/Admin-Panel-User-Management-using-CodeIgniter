@@ -26,7 +26,7 @@ class User extends BaseController
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'AutoTradeMachine : Dashboard';
+        $this->global['pageTitle'] = 'TraderSupport : Dashboard';
         
         $this->loadViews("dashboard", $this->global, NULL , NULL);
     }
@@ -53,7 +53,7 @@ class User extends BaseController
             
             $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
             
-            $this->global['pageTitle'] = 'AutoTradeMachine : User Listing';
+            $this->global['pageTitle'] = 'TraderSupport : User Listing';
             
             $this->loadViews("users", $this->global, $data, NULL);
         }
@@ -73,7 +73,7 @@ class User extends BaseController
             $this->load->model('user_model');
             $data['roles'] = $this->user_model->getUserRoles();
             
-            $this->global['pageTitle'] = 'AutoTradeMachine : Add New User';
+            $this->global['pageTitle'] = 'TraderSupport : Add New User';
 
             $this->loadViews("addNew", $this->global, $data, NULL);
         }
@@ -170,7 +170,7 @@ class User extends BaseController
             $data['roles'] = $this->user_model->getUserRoles();
             $data['userInfo'] = $this->user_model->getUserInfo($userId);
             
-            $this->global['pageTitle'] = 'AutoTradeMachine : Edit User';
+            $this->global['pageTitle'] = 'TraderSupport : Edit User';
             
             $this->loadViews("editOld", $this->global, $data, NULL);
         }
@@ -269,7 +269,7 @@ class User extends BaseController
      */
     function pageNotFound()
     {
-        $this->global['pageTitle'] = 'AutoTradeMachine : 404 - Page Not Found';
+        $this->global['pageTitle'] = 'TraderSupport : 404 - Page Not Found';
         
         $this->loadViews("404", $this->global, NULL, NULL);
     }
@@ -306,7 +306,7 @@ class User extends BaseController
 
             $data['userRecords'] = $this->user_model->loginHistory($userId, $searchText, $fromDate, $toDate, $returns["page"], $returns["segment"]);
             
-            $this->global['pageTitle'] = 'AutoTradeMachine : User Login History';
+            $this->global['pageTitle'] = 'TraderSupport : User Login History';
             
             $this->loadViews("loginHistory", $this->global, $data, NULL);
         }        
@@ -319,7 +319,7 @@ class User extends BaseController
     {
         $data["userInfo"] = $this->user_model->getUserInfoWithRole($this->vendorId);
         $data["active"] = $active;
-        $this->global['pageTitle'] = $active == "details" ? 'AutoTradeMachine : My Profile' : 'AutoTradeMachine : Change Password';
+        $this->global['pageTitle'] = $active == "details" ? 'TraderSupport : My Profile' : 'TraderSupport : Change Password';
         $this->loadViews("profile", $this->global, $data, NULL);
     }
 
