@@ -26,7 +26,7 @@ class User extends BaseController
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'CodeInsect : Dashboard';
+        $this->global['pageTitle'] = 'AutoTradeMachine : Dashboard';
         
         $this->loadViews("dashboard", $this->global, NULL , NULL);
     }
@@ -53,7 +53,7 @@ class User extends BaseController
             
             $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
             
-            $this->global['pageTitle'] = 'CodeInsect : User Listing';
+            $this->global['pageTitle'] = 'AutoTradeMachine : User Listing';
             
             $this->loadViews("users", $this->global, $data, NULL);
         }
@@ -73,29 +73,29 @@ class User extends BaseController
             $this->load->model('user_model');
             $data['roles'] = $this->user_model->getUserRoles();
             
-            $this->global['pageTitle'] = 'CodeInsect : Add New User';
+            $this->global['pageTitle'] = 'AutoTradeMachine : Add New User';
 
             $this->loadViews("addNew", $this->global, $data, NULL);
         }
     }
 
-    /**
-     * This function is used to check whether email already exist or not
-     */
-    function checkEmailExists()
-    {
-        $userId = $this->input->post("userId");
-        $email = $this->input->post("email");
-
-        if(empty($userId)){
-            $result = $this->user_model->checkEmailExists($email);
-        } else {
-            $result = $this->user_model->checkEmailExists($email, $userId);
-        }
-
-        if(empty($result)){ echo("true"); }
-        else { echo("false"); }
-    }
+//    /**
+//     * This function is used to check whether email already exist or not
+//     */
+//    function checkEmailExists()
+//    {
+//        $userId = $this->input->post("userId");
+//        $email = $this->input->post("email");
+//
+//        if(empty($userId)){
+//            $result = $this->user_model->checkEmailExists($email);
+//        } else {
+//            $result = $this->user_model->checkEmailExists($email, $userId);
+//        }
+//
+//        if(empty($result)){ echo("true"); }
+//        else { echo("false"); }
+//    }
     
     /**
      * This function is used to add new user to the system
@@ -170,7 +170,7 @@ class User extends BaseController
             $data['roles'] = $this->user_model->getUserRoles();
             $data['userInfo'] = $this->user_model->getUserInfo($userId);
             
-            $this->global['pageTitle'] = 'CodeInsect : Edit User';
+            $this->global['pageTitle'] = 'AutoTradeMachine : Edit User';
             
             $this->loadViews("editOld", $this->global, $data, NULL);
         }
@@ -269,7 +269,7 @@ class User extends BaseController
      */
     function pageNotFound()
     {
-        $this->global['pageTitle'] = 'CodeInsect : 404 - Page Not Found';
+        $this->global['pageTitle'] = 'AutoTradeMachine : 404 - Page Not Found';
         
         $this->loadViews("404", $this->global, NULL, NULL);
     }
@@ -306,7 +306,7 @@ class User extends BaseController
 
             $data['userRecords'] = $this->user_model->loginHistory($userId, $searchText, $fromDate, $toDate, $returns["page"], $returns["segment"]);
             
-            $this->global['pageTitle'] = 'CodeInsect : User Login History';
+            $this->global['pageTitle'] = 'AutoTradeMachine : User Login History';
             
             $this->loadViews("loginHistory", $this->global, $data, NULL);
         }        
@@ -319,8 +319,7 @@ class User extends BaseController
     {
         $data["userInfo"] = $this->user_model->getUserInfoWithRole($this->vendorId);
         $data["active"] = $active;
-        
-        $this->global['pageTitle'] = $active == "details" ? 'CodeInsect : My Profile' : 'CodeInsect : Change Password';
+        $this->global['pageTitle'] = $active == "details" ? 'AutoTradeMachine : My Profile' : 'AutoTradeMachine : Change Password';
         $this->loadViews("profile", $this->global, $data, NULL);
     }
 
@@ -402,6 +401,43 @@ class User extends BaseController
                 
                 redirect('profile/'.$active);
             }
+        }
+    }
+
+    /**
+     * This function is used to update the user details
+     * @param text $active : This is flag to set the active tab
+     */
+    function changeAPI($active = "changeapi")
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('api_key','API Key','trim|required|max_length[255]');
+        $this->form_validation->set_rules('api_secret','API Secret','trim|required|max_length[255]');
+
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->profile($active);
+        }
+        else
+        {
+            $auto_trade = $this->input->post('auto_trade') == 'on' ? 1 : 0;
+            $api_key = $this->security->xss_clean($this->input->post('api_key'));
+            $api_secret = $this->security->xss_clean($this->input->post('api_secret'));
+
+            $APIInfo = array('api_key'=>$api_key, "auto_trade"=>$auto_trade, 'api_secret'=>$api_secret, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
+
+            $result = $this->user_model->editUser($APIInfo, $this->vendorId);
+
+            if($result == true)
+            {
+                $this->session->set_flashdata('success', 'Profile updated successfully');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Profile updation failed');
+            }
+
+            redirect('profile/'.$active);
         }
     }
 }

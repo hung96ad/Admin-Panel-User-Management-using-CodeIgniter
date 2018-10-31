@@ -216,12 +216,12 @@ class Login extends CI_Controller
         $message = '';
         $email = strtolower($this->input->post("email"));
         $activation_id = $this->input->post("activation_code");
-        
+
         $this->load->library('form_validation');
-        
+
         $this->form_validation->set_rules('password','Password','required|max_length[20]');
         $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
-        
+
         if($this->form_validation->run() == FALSE)
         {
             $this->resetPasswordConfirmUser($activation_id, urlencode($email));
@@ -230,14 +230,14 @@ class Login extends CI_Controller
         {
             $password = $this->input->post('password');
             $cpassword = $this->input->post('cpassword');
-            
+
             // Check activation id in database
             $is_correct = $this->login_model->checkActivationDetails($email, $activation_id);
-            
+
             if($is_correct == 1)
-            {                
+            {
                 $this->login_model->createPasswordUser($email, $password);
-                
+
                 $status = 'success';
                 $message = 'Password reset successfully';
             }
@@ -246,10 +246,62 @@ class Login extends CI_Controller
                 $status = 'error';
                 $message = 'Password reset failed';
             }
-            
+
             setFlashData($status, $message);
 
             redirect("/login");
+        }
+    }
+
+    /**
+     * This function is used to check whether email already exist or not
+     */
+    function checkEmailExists()
+    {
+        $this->load->model('user_model');
+        $userId = $this->input->post("userId");
+        $email = $this->input->post("email");
+        if(empty($userId)){
+            $result = $this->user_model->checkEmailExists($email);
+        } else {
+            $result = $this->user_model->checkEmailExists($email, $userId);
+        }
+        if(empty($result)){ echo("true"); }
+        else { echo("false"); }
+    }
+
+    function signUp()
+    {
+        $this->load->view('register');
+    }
+
+    function register()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
+        $this->form_validation->set_rules('password','Password','required|max_length[20]');
+        $this->form_validation->set_rules('cpassword','Confirm Password','required|max_length[20]');
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->signUp();
+        }
+        else {
+            $email = strtolower($this->security->xss_clean($this->input->post('email')));
+            $password = $this->input->post('password');
+            $roleId = 3;
+            $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId, 'createdDtm'=>date('Y-m-d H:i:s'));
+            $this->load->model('user_model');
+            $result = $this->user_model->addNewUser($userInfo);
+
+            if($result > 0)
+            {
+                $this->session->set_flashdata('success', 'New User created successfully');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'User creation failed');
+            }
+            redirect('register');
         }
     }
 }

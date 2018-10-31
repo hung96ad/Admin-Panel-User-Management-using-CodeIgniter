@@ -55,9 +55,11 @@ $route['404_override'] = 'error_404';
 
 
 /*********** USER DEFINED ROUTES *******************/
+$route['signUp'] = 'login/signUp';
+$route['register'] = 'login/register';
+$route['checkEmailExists'] = "login/checkEmailExists";
 
 $route['loginMe'] = 'login/loginMe';
-$route['dashboard'] = 'user';
 $route['logout'] = 'user/logout';
 $route['userListing'] = 'user/userListing';
 $route['userListing/(:num)'] = "user/userListing/$1";
@@ -74,12 +76,17 @@ $route['profileUpdate/(:any)'] = "user/profileUpdate/$1";
 
 $route['loadChangePass'] = "user/loadChangePass";
 $route['changePassword'] = "user/changePassword";
+$route['changeAPI'] = "user/changeAPI";
 $route['changePassword/(:any)'] = "user/changePassword/$1";
 $route['pageNotFound'] = "user/pageNotFound";
-$route['checkEmailExists'] = "user/checkEmailExists";
 $route['login-history'] = "user/loginHistoy";
 $route['login-history/(:num)'] = "user/loginHistoy/$1";
 $route['login-history/(:num)/(:num)'] = "user/loginHistoy/$1/$2";
+
+$route['chart'] = "chart/showChart";
+$route['chart/(:any)'] = "chart/showChart/$1";
+$route['dashboard'] = 'chart/showTablePredict';
+
 
 $route['forgotPassword'] = "login/forgotPassword";
 $route['resetPasswordUser'] = "login/resetPasswordUser";

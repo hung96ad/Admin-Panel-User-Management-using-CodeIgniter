@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="730c8858-83ea-4bc5-9f8f-7e5c76095a55" name="t" url="http://35.240.236.30">
+        <fileTransfer host="35.240.236.30" port="22" privateKey="$PROJECT_DIR$/../../../key/key_winscp.ppk" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -134,8 +134,19 @@ class User_model extends CI_Model
         
         return TRUE;
     }
-    
-    
+
+    /**
+     * This function is used to update the api key, api secret
+     * @param array $APIInfo : This is users updated information
+     * @param number $userId : This is user id
+     */
+    function editAPI($userInfo, $userId)
+    {
+        $this->db->where('userId', $userId);
+        $this->db->update('tbl_users', $userInfo);
+
+        return TRUE;
+    }
     
     /**
      * This function is used to delete the user information
@@ -275,7 +286,8 @@ class User_model extends CI_Model
      */
     function getUserInfoWithRole($userId)
     {
-        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, BaseTbl.roleId, Roles.role');
+        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, 
+            BaseTbl.roleId, Roles.role, BaseTbl.api_key, BaseTbl.api_secret, BaseTbl.auto_trade');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Roles','Roles.roleId = BaseTbl.roleId');
         $this->db->where('BaseTbl.userId', $userId);
