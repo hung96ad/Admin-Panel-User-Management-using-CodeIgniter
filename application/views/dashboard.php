@@ -66,7 +66,19 @@
 <script>
     $(function () {
         $('#example1').DataTable( {
-            "order": [[ 2, "desc" ]]
+            "order": [[ 2, "desc" ]],
+            columnDefs: [{targets: [2,3,4,5],
+                render: function ( data, type, row ) {
+                    var color = 'black';
+                    if (data > 0) {
+                        color = 'green';
+                    }
+                    if (data < 0) {
+                        color = 'red';
+                    }
+                    return '<span style="color:' + color + '">' + data + '</span>';
+                }
+            }]
         })
     })
 </script>

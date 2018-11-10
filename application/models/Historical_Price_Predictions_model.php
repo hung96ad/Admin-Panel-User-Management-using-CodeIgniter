@@ -30,7 +30,7 @@ class Historical_Price_Predictions_model extends CI_Model
         return $result;
     }
 
-    function  getDataPredict()
+    function getDataPredict()
     {
         $sql = 'SELECT a.*, c.symbol
                 FROM (SELECT h.id_coin,
@@ -42,7 +42,7 @@ class Historical_Price_Predictions_model extends CI_Model
                         ROUND(price_preidct_last - (price_predict_previous - price_actual_last), 8) price_preidct_true,
                         FROM_UNIXTIME(h.time_create) time_predict
                     FROM historical_price_predictions AS h
-                    WHERE time_create > UNIX_TIMESTAMP(NOW()) - 30 * 60
+                    WHERE time_create > UNIX_TIMESTAMP(NOW()) - 60 * 60
                     ORDER BY percent_predict DESC
                     ) AS a
                 JOIN coin_info c ON a.id_coin = c.id';

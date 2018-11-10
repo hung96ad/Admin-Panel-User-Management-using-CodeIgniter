@@ -42,7 +42,7 @@
         <!-- Logo -->
         <a href="<?php echo base_url(); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>CI</b>AS</span>
+          <span class="logo-mini"><b>TS</b>AS</span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>TraderSupport</b>AS</span>
         </a>
@@ -106,34 +106,34 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
             </li>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-plane"></i>
-                <span>New Task</span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-ticket"></i>
-                <span>My Tasks</span>
-              </a>
-            </li>
+<!--            <li class="treeview">-->
+<!--              <a href="#" >-->
+<!--                <i class="fa fa-plane"></i>-->
+<!--                <span>New Task</span>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li class="treeview">-->
+<!--              <a href="#" >-->
+<!--                <i class="fa fa-ticket"></i>-->
+<!--                <span>My Tasks</span>-->
+<!--              </a>-->
+<!--            </li>-->
             <?php
             if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
             {
             ?>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-thumb-tack"></i>
-                <span>Task Status</span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-upload"></i>
-                <span>Task Uploads</span>
-              </a>
-            </li>
+<!--            <li class="treeview">-->
+<!--              <a href="#" >-->
+<!--                <i class="fa fa-thumb-tack"></i>-->
+<!--                <span>Task Status</span>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li class="treeview">-->
+<!--              <a href="#" >-->
+<!--                <i class="fa fa-upload"></i>-->
+<!--                <span>Task Uploads</span>-->
+<!--              </a>-->
+<!--            </li>-->
             <?php
             }
             if($role == ROLE_ADMIN)
@@ -145,12 +145,12 @@
                 <span>Users</span>
               </a>
             </li>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-files-o"></i>
-                <span>Reports</span>
-              </a>
-            </li>
+<!--            <li class="treeview">-->
+<!--              <a href="#" >-->
+<!--                <i class="fa fa-files-o"></i>-->
+<!--                <span>Reports</span>-->
+<!--              </a>-->
+<!--            </li>-->
             <?php
             }
             ?>

@@ -38,19 +38,17 @@
 <script>
     $(function () {
         "use strict";
-        // AREA CHART
         var line = new Morris.Line({
             element: 'line-chart',
             resize: true,
             data: [
                 <?php $len = count($price_actual);
-                echo  '{y: '. $openTime_last .', price_actual: '. $price_actual[0] . ', price_predict: null},';
-                for($i = 2; $i< $len-1 ; $i++){
-                    $time = ($i * 30 * 60 * 1000 + $openTime_last);
-                    echo  '{y: '. $time . ', price_actual: '. $price_actual[$i-1] . ', price_predict: ' . $price_predict[$i] . '},';
+                for($i = 0; $i< $len ; $i++){
+                    $time = (($i+1) * 60 * 60 * 1000 + $openTime_last);
+                    echo  '{y: '. $time . ', price_actual: '. $price_actual[$i] . ', price_predict: ' . $price_predict[$i] . '},';
                 }
-                $time = (($len - 1) * 30 * 60 * 1000 + $openTime_last);
-                echo  '{y: ' . $time . ', price_actual: null , price_predict: ' . $price_predict[$len-1] . '},';
+                $time = (($len+1) * 60 * 60 * 1000 + $openTime_last);
+                echo  '{y: '. $time .', price_actual: null, price_predict: ' . $price_predict[$len] . '},';
                 ?>
             ],
             xkey: 'y',
