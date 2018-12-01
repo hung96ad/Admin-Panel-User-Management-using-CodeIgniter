@@ -12,7 +12,7 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Price: <?php echo $price;?></h3>
+                        <h3 class="box-title">Price now: <?php echo $price;?> - Relative error: <?php echo $relative_error;?>% - Trend error: <?php echo $per_err_trend;?>%</h3>
 
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -47,8 +47,8 @@
                     $time = (($i+1) * 60 * 60 * 1000 + $openTime_last);
                     echo  '{y: '. $time . ', price_actual: '. $price_actual[$i] . ', price_predict: ' . $price_predict[$i] . '},';
                 }
-                $time = (($len+1) * 60 * 60 * 1000 + $openTime_last);
-                echo  '{y: '. $time .', price_actual: null, price_predict: ' . $price_predict[$len] . '},';
+//                $time = (($len+1) * 60 * 60 * 1000 + $openTime_last);
+//                echo  '{y: '. $time .', price_actual: null, price_predict: ' . $price_predict[$len] . '},';
                 ?>
             ],
             xkey: 'y',

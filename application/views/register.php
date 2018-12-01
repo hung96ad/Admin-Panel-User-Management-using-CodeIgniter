@@ -29,7 +29,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b>TradeSupport</b><br>Admin System</a>
+        <a href="#"><b>TraderSupport</b><br>Admin System</a>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Sign Up</p>

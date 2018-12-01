@@ -95,5 +95,8 @@ $route['resetPasswordConfirmUser/(:any)'] = "login/resetPasswordConfirmUser/$1";
 $route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUser/$1/$2";
 $route['createPasswordUser'] = "login/createPasswordUser";
 
+
+$route['api/check_exist_and_insert_hash_model'] = "api/Model_CNN/check_exist_and_insert_hash_model";
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
