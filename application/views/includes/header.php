@@ -106,18 +106,18 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
             </li>
-<!--            <li class="treeview">-->
-<!--              <a href="#" >-->
-<!--                <i class="fa fa-plane"></i>-->
-<!--                <span>New Task</span>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--            <li class="treeview">-->
-<!--              <a href="#" >-->
-<!--                <i class="fa fa-ticket"></i>-->
-<!--                <span>My Tasks</span>-->
-<!--              </a>-->
-<!--            </li>-->
+            <li class="treeview">
+                <a href="<?php echo base_url(); ?>emotion_recognition">
+                <i class="fa fa-smile-o"></i>
+                <span>Emotion recognition</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="#" >
+                <i class="fa fa-ticket"></i>
+                <span>My Emotion</span>
+              </a>
+            </li>
             <?php
             if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
             {

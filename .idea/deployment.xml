@@ -5,7 +5,7 @@
       <paths name="t">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/googlecloud/admin" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/googlecloud/landipage/admin" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

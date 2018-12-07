@@ -18,7 +18,6 @@ class Model_CNN extends REST_Controller
     {
         $data = $this->post();
         $this->load->model('hash_models_network_neurol');
-//        var_dump($data);die;
         if ($this->hash_models_network_neurol->check_exist($data)) {
             $this->response([
                 'status' => true,
