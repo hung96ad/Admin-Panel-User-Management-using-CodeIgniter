@@ -112,6 +112,12 @@
                 <span>Emotion recognition</span>
               </a>
             </li>
+              <li class="treeview">
+                  <a href="<?php echo base_url(); ?>student_info">
+                      <i class="fa fa-users"></i>
+                      <span>Student info</span>
+                  </a>
+              </li>
             <li class="treeview">
               <a href="#" >
                 <i class="fa fa-ticket"></i>

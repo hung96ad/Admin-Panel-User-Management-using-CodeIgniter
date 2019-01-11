@@ -100,5 +100,8 @@ $route['api/check_exist_and_insert_hash_model'] = "api/Model_CNN/check_exist_and
 
 $route['Emotion_recognitionModel'] = "Emotion_recognition/index";
 
+$route['student_info'] = 'Hust/student_info';
+$route['student_info/(:num)'] = "Hust/student_info/$1";
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
